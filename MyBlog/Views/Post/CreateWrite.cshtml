@@ -1,0 +1,78 @@
+﻿@model MyBlog.Models.View.WriteModel
+
+@{
+    ViewData["Title"] = "CreateWrite";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>CreateWrite</h1>
+
+@DateTime.Now
+<hr />
+<div class="row">
+    <div class="col-md-7">
+        <form asp-action="CreateWrite">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @Html.HiddenFor(x => x.Write.Id)
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Write.Konu" class="control-label"></label>
+                <input asp-for="Write.Konu" class="form-control" />
+            </div>
+            @*<div class="form-group">
+
+                <div id="froala-editor">
+
+                    <h3>Click here to edit the content</h3>
+                    <p><img id="edit" class="fr-fil fr-dib" src="/assets/editor/docs/photo14.jpg" alt="Old Clock" width="300" /></p>
+                    <p>The image can be dragged only between blocks and not inside them.</p>
+                </div>
+
+            </div>*@
+            <div class="form-group">
+                @Html.TextAreaFor(x => x.Write.Mesaj, new { @id = "froala-editor"  })
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Write.Tarih" class="control-label"></label>
+                <input asp-for="Write.Tarih" class="form-control" />
+            </div>
+
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+<div>
+    <a asp-action="Index">Vazgeç</a>
+</div>
+
+@section Scripts{
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@2.9.4/js/froala_editor.pkgd.min.js"></script>
+    <script>
+        $(function () {
+            $('textarea#froala-editor').froalaEditor({
+                imageUploadUrl: '/Post/FileUploader',
+                method:'POST',
+                imageUploadParams: {
+                    id: 'myeditor'
+                }
+            })
+        });
+    </script>
+    
+}

@@ -1,0 +1,54 @@
+﻿@model MyBlog.Models.View.MessageModel
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>Contact us</h3>
+    </div>
+</div>
+<form class="form form-horizontal" method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label asp-for="Message.Name" class="col-md-3 right">Name:</label>
+                <div class="col-md-9">
+                    <input asp-for="Message.Name" class="form-control" />
+                    <span asp-validation-for="Message.Name"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label asp-for="Message.Email" class="col-md-3 right">Email:</label>
+                <div class="col-md-9">
+                    <input asp-for="Message.Email" class="form-control" />
+                    <span asp-validation-for="Message.Email"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label asp-for="Message.Messages" class="col-md-3 right">Your Message:</label>
+                <div class="col-md-9">
+                    <textarea asp-for="Message.Messages" rows="6" class="form-control"></textarea>
+                    <span asp-validation-for="Message.Messages"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button type="submit">Send</button>
+        </div>
+    </div>
+</form>
+
